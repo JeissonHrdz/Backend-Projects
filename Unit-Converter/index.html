@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <title>JSP - Hello World</title>
+</head>
+
+<body>
+<div class="converter-container">
+    <h1>Unit Converter</h1>
+    <div class="tabs">
+        <button class="tab-button active" data-type="length">LENGTH</button>
+        <button class="tab-button" data-type="weight">WEIGHT</button>
+        <button class="tab-button" data-type="temperature">TEMPERATURE</button>
+        <button class="tab-button" data-type="volume">VOLUME</button>
+        <button class="tab-button" data-type="area">AREA</button>
+    </div>
+    <div class="converter-input">
+        <input type="number" id="inputValue" placeholder="Enter a value">
+        <select id="fromUnit"></select>
+        <span>a</span>
+        <select id="toUnit"></select>
+        <button id="convertButton">CONVERT</button>
+    </div>
+    <div class="result">
+        <h2>Result of Your Calculation</h2>
+        <p id="resultValue">-</p>
+        <button id="resetButton">ReseT</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+<script src="script.js"></script>
+</html>

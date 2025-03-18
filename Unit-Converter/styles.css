@@ -1,0 +1,86 @@
+body {
+    font-family: Tahoma, sans-serif;
+    background: #00acff;
+    background: linear-gradient(38deg, #00acff 0%, #000000 60%);
+    background: -webkit-linear-gradient(38deg, #00acff 0%, #000000 60%);
+    background: -moz-linear-gradient(38deg, #00acff 0%, #000000 60%);
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.converter-container {
+    background-color: #1E1E1E;
+    padding: 20px;
+    border-radius: 10px;
+    width: 700px;
+    text-align: center;
+    box-shadow: -1px 2px 51px -14px rgba(78, 156, 224, 0.80);
+}
+
+h1 {
+    color: #00BFFF;
+}
+
+.tabs {
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background-color: #333333;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tab-button.active {
+    background-color: #00BFFF;
+}
+
+.converter-input {
+    margin-bottom: 20px;
+}
+
+.converter-input input, .converter-input select {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #333333;
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+.converter-input button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #00BFFF;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.result {
+    background-color: #333333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.result h2 {
+    color: #00BFFF;
+}
+
+.result button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #00BFFF;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-top: 10px;
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body style="background-color: #fffcf5;  " >
+<div class="container-fluid  ">
+    <button class="btn btn-outline-warning text-dark shadow float-end m-4" data-bs-toggle="modal" data-bs-target="#loginModal">
+        Login
+    </button>
+</div>
+<div class="container  p-4 m-5 m-auto w-50" >
+  <div class="row  text-dark p-3 title  rounded">
+      <h2>PERSONAL BLOG</h2>
+  </div>
+
+    <div class="row  justify-content-center">
+        <div class="container  bg-light rounded p-3 m-3 articles">
+            <h4>Articles</h4>
+            <br>
+            <div class="row article-row m-0 p-2 rounded" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="col">
+                    <p class="m-0">My First Article</p>
+                </div>
+                <div class="col-6">
+                    <p class="m-0 float-end"> August 7, 2024</p>
+                </div>
+            </div>
+            <div class="row article-row m-0 p-2 rounded" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="col">
+                    <p class="m-0 ">My First Article</p>
+                </div>
+                <div class="col-6">
+                    <p class="m-0 float-end"> August 7, 2024</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ARTICLE MODAL -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">My Article</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="m-0 "> August 7, 2024</p>
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus facilisis quam quis ante accumsan vulputate. Pellentesque consectetur urna id tempor ultrices. Sed ut orci vitae tellus tincidunt vulputate at non arcu. Aliquam nisi massa, aliquam et viverra eget, luctus nec ante. Vivamus feugiat pulvinar est quis sodales. Proin ligula sem, vehicula non egestas in, rutrum nec lectus. Integer non erat suscipit, euismod nisl at, luctus libero. Maecenas pulvinar, sem vitae dapibus elementum, quam diam volutpat est, tristique lobortis dui leo quis neque. Phasellus facilisis eros non neque vulputate rutrum. Proin commodo semper faucibus. Fusce vehicula nisl risus, fringilla feugiat sem porttitor ac. Aliquam urna lectus, lobortis sit amet enim in, posuere scelerisque quam. Integer viverra magna pulvinar, condimentum urna faucibus, sodales erat.
+
+                Phasellus facilisis lobortis arcu, ac ornare lorem tempus non. Etiam vulputate pellentesque eleifend. Nulla facilisi. Suspendisse tristique nulla lacus, nec convallis lectus laoreet ut. Nunc consequat magna dolor, id vehicula turpis vehicula eu. Donec porta, justo vitae volutpat egestas, risus ligula interdum arcu, sit amet pharetra velit purus venenatis eros. Donec pretium, ipsum in tincidunt aliquet, nibh tellus tincidunt libero, vel congue felis leo ut mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+                Praesent quis tincidunt urna. Donec rhoncus semper pretium. Integer aliquam velit vitae felis feugiat efficitur. Duis consectetur fermentum justo, at porttitor elit vulputate id. Praesent venenatis massa sed enim laoreet laoreet. Nam faucibus ac leo non aliquet. Vivamus consequat lobortis interdum. Mauris eu tincidunt leo, eget tincidunt purus. Pellentesque commodo, turpis placerat posuere eleifend, augue nisl maximus quam, quis eleifend enim quam eget lectus. Nullam ut pellentesque est.
+
+                Mauris sed elit quis enim lobortis lacinia. Maecenas placerat elementum est et iaculis. Cras sodales et mauris a bibendum. Nunc mollis velit mi, eu euismod lectus vestibulum quis. Duis at velit ultricies, varius quam egestas, bibendum justo. Donec tincidunt, leo non faucibus commodo, ante leo eleifend orci, in laoreet elit lorem quis ipsum. Integer pharetra malesuada ex, a sagittis turpis accumsan nec. Nunc in neque mattis mi venenatis viverra mattis ac dui. Ut scelerisque laoreet quam non elementum. Vestibulum efficitur a tortor in tristique.
+
+                Praesent at cursus ligula. Ut arcu nibh, imperdiet id magna sed, tristique ultrices mi. Ut et porta felis. Aenean ullamcorper luctus lorem, id euismod ligula posuere ut. Praesent venenatis leo id laoreet rhoncus. Pellentesque a velit viverra purus pretium tincidunt nec ac urna. Cras vel iaculis lacus. Nunc tincidunt, massa sed congue lobortis, odio nisl rutrum urna, ut tincidunt erat massa ac arcu. Nulla finibus, est vitae vulputate ornare, dui arcu pulvinar enim, at blandit sapien risus id odio. Sed libero sem, facilisis pretium molestie non, tristique et urna. Nullam at erat sit amet nulla varius elementum.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LOGIN MODAL -->
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="loginModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe src="login.html" frameborder="0"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

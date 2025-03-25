@@ -1,0 +1,16 @@
+
+<!--/*@thymesVar id="Article" type="org.personalblog.model.entity.Article"*/-->
+<form  action="#" th:action="@{/articles/add-article}" th:object="${Article}" method="POST" xmlns:th="https://www.thymeleaf.org">
+    <div class="mb-3">
+        <input type="number" th:field="*{id}"  class="form-control" id="id_article">
+        <input type="text" th:field="*{title}" placeholder="Article Title" class="form-control" id="article_title">
+    </div>
+    <div class="mb-3">
+        <input  placeholder="Date" th:field="*{date}" type="date" class="form-control" id="date_article">
+    </div>
+    <div>
+        <textarea placeholder="Content"  th:field="*{content}" class="form-control" id="article_body" rows="6"></textarea>
+    </div>
+    <br>
+    <button type="submit"  class="btn btn-warning">Publish</button>
+</form>

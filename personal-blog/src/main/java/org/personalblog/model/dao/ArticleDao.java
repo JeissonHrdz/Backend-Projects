@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ArticleDao {
 
-    private static final String FILE_PATH = "personal-blog/src/main/resources/json/Articles.json";
+    private static final String FILE_PATH = "Articles.json";
 
     public List<Article> getArticles() {
         return JsonUtil.readJson(FILE_PATH);

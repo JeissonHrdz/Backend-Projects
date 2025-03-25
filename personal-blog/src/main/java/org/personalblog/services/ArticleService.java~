@@ -12,7 +12,7 @@ import java.util.List;
 public class ArticleService {
 
 
-    private final ArticleDao articleDao = new ArticleDao();
+    private ArticleDao articleDao = new ArticleDao();
 
     public List<Article> getAllArticles() {
         return articleDao.getArticles();

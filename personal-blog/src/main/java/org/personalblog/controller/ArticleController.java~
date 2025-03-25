@@ -24,7 +24,7 @@ public class ArticleController {
     @PostMapping("/admin/new")
     public String addArticle(@ModelAttribute("article") ArticleDto articleDto, Model model) {
         articleService.addArticle(articleDto);
-        return "redirect:/home"; // Redirige para evitar reenvíos del formulario
+        return " "; // Redirige para evitar reenvíos del formulario
     }
 
 }

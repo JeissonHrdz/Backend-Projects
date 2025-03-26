@@ -1,6 +1,7 @@
 package org.personalblog.model.entity;
 
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 @AllArgsConstructor
@@ -11,9 +12,15 @@ import lombok.*;
 public class Article {
 
 
-    private int id;
+    private String id;
+
+    @NotEmpty(message = "Title cannot be empty")
     private String title;
+
+    @NotEmpty(message = "Date cannot be empty")
     private String date;
-    private long content;
+
+    @NotEmpty(message = "Content cannot be empty")
+    private String content;
 
 }

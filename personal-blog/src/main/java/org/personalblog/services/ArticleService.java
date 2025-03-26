@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ArticleService {
@@ -19,8 +20,9 @@ public class ArticleService {
     }
 
     public void addArticle(ArticleDto articleDto) {
+        UUID id = UUID.randomUUID();
         Article article = Article.builder()
-                .id(articleDto.getId())
+                .id(id.toString())
                 .title(articleDto.getTitle())
                 .date(articleDto.getDate())
                 .content(articleDto.getContent())

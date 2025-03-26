@@ -1,16 +1,26 @@
 [ {
-  "id" : 0,
-  "title" : "dfsdf",
-  "date" : "2025-03-13",
-  "content" : 0
+  "id" : "8b8794c6-916a-4187-909b-65f3d7fdf39d",
+  "title" : "HOAL EL ARTICULO",
+  "date" : "2025-03-03",
+  "content" : "0"
 }, {
-  "id" : 2,
+  "id" : "55141d8c-506e-4be3-b830-1da7d62562d5",
+  "title" : "La vida sin ella",
+  "date" : "2025-03-08",
+  "content" : "Ella no me ama no noooooooooooo"
+}, {
+  "id" : "d8246c13-1890-48cc-8e52-b7b05d59f6a9",
+  "title" : "NUevo article",
+  "date" : "2025-03-27",
+  "content" : "asdasd"
+}, {
+  "id" : "530613b0-1231-495e-a0f2-192e70d9c4d4",
   "title" : "sadasd",
-  "date" : "2025-03-14",
-  "content" : 0
+  "date" : "2025-03-21",
+  "content" : "asd"
 }, {
-  "id" : 5,
-  "title" : "asd",
-  "date" : "2025-03-18",
-  "content" : 0
+  "id" : "bae4610e-959c-4de1-bde0-6f6205826578",
+  "title" : "asdasd",
+  "date" : "2025-03-06",
+  "content" : "asdsd"
 } ]

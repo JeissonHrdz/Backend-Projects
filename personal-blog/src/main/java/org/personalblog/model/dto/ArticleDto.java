@@ -1,6 +1,9 @@
 package org.personalblog.model.dto;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Data
@@ -10,8 +13,14 @@ import lombok.*;
 @Builder
 public class ArticleDto {
 
-    private int id;
+    private String id;
+
+    @NotBlank(message = "Title cannot be empty")
     private String title;
+
+    @NotBlank(message = "Date cannot be empty")
     private String date;
-    private long content;
+
+    @NotBlank(message = "Content cannot be empty")
+    private String content;
 }

@@ -15,7 +15,7 @@ body{
 }
 
 .article-row:hover {
-    background-color: #fff7df;
+    background-color: #efefef
 
 }
 

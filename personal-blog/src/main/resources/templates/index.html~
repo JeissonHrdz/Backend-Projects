@@ -35,16 +35,27 @@
 
             </div>
             <br>
-            <div th:each="articles : ${articles}" class="row article-row m-0 p-2 rounded" role="button"
-                 data-bs-toggle="modal"
-                 data-bs-target="#exampleModal">
-                <div class="col">
-                    <p class="m-0">[[${articles.title}]]</p>
+            <section id="articles">
+                <div th:each="articles : ${articles}" class="row article-row m-0 p-2 rounded z-1" role="button">
+                    <div class="col-8 row article"  th:id="${articles.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="col-6">
+                            <p class="m-0">[[${articles.title}]]</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="m-0 float-end"> [[${articles.date}]]</p>
+                        </div>
+                    </div>
+
+                    <div class="col-2 ">
+
+                        <button class="btn btn-outline-warning shadow float-end" data-bs-toggle="modal"
+                                data-bs-target="#addArticleModal">Edit</button>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-outline-danger  shadow float-end">Delete</button>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <p class="m-0 float-end"> [[${articles.date}]]</p>
-                </div>
-            </div>
+            </section>
         </div>
     </div>
 </div>
@@ -53,48 +64,11 @@
     <div class="modal-dialog modal-lg modal-dialog-scrollable ">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">My Article</h1>
+                <h1 class="modal-title fs-5 article-title" id="exampleModalLabel">My Article</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <p class="m-0 "> August 7, 2024</p>
-                <br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus facilisis quam quis ante accumsan
-                vulputate. Pellentesque consectetur urna id tempor ultrices. Sed ut orci vitae tellus tincidunt
-                vulputate at non arcu. Aliquam nisi massa, aliquam et viverra eget, luctus nec ante. Vivamus feugiat
-                pulvinar est quis sodales. Proin ligula sem, vehicula non egestas in, rutrum nec lectus. Integer non
-                erat suscipit, euismod nisl at, luctus libero. Maecenas pulvinar, sem vitae dapibus elementum, quam diam
-                volutpat est, tristique lobortis dui leo quis neque. Phasellus facilisis eros non neque vulputate
-                rutrum. Proin commodo semper faucibus. Fusce vehicula nisl risus, fringilla feugiat sem porttitor ac.
-                Aliquam urna lectus, lobortis sit amet enim in, posuere scelerisque quam. Integer viverra magna
-                pulvinar, condimentum urna faucibus, sodales erat.
+            <div class="modal-body article-content">
 
-                Phasellus facilisis lobortis arcu, ac ornare lorem tempus non. Etiam vulputate pellentesque eleifend.
-                Nulla facilisi. Suspendisse tristique nulla lacus, nec convallis lectus laoreet ut. Nunc consequat magna
-                dolor, id vehicula turpis vehicula eu. Donec porta, justo vitae volutpat egestas, risus ligula interdum
-                arcu, sit amet pharetra velit purus venenatis eros. Donec pretium, ipsum in tincidunt aliquet, nibh
-                tellus tincidunt libero, vel congue felis leo ut mi. Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit.
-
-                Praesent quis tincidunt urna. Donec rhoncus semper pretium. Integer aliquam velit vitae felis feugiat
-                efficitur. Duis consectetur fermentum justo, at porttitor elit vulputate id. Praesent venenatis massa
-                sed enim laoreet laoreet. Nam faucibus ac leo non aliquet. Vivamus consequat lobortis interdum. Mauris
-                eu tincidunt leo, eget tincidunt purus. Pellentesque commodo, turpis placerat posuere eleifend, augue
-                nisl maximus quam, quis eleifend enim quam eget lectus. Nullam ut pellentesque est.
-
-                Mauris sed elit quis enim lobortis lacinia. Maecenas placerat elementum est et iaculis. Cras sodales et
-                mauris a bibendum. Nunc mollis velit mi, eu euismod lectus vestibulum quis. Duis at velit ultricies,
-                varius quam egestas, bibendum justo. Donec tincidunt, leo non faucibus commodo, ante leo eleifend orci,
-                in laoreet elit lorem quis ipsum. Integer pharetra malesuada ex, a sagittis turpis accumsan nec. Nunc in
-                neque mattis mi venenatis viverra mattis ac dui. Ut scelerisque laoreet quam non elementum. Vestibulum
-                efficitur a tortor in tristique.
-
-                Praesent at cursus ligula. Ut arcu nibh, imperdiet id magna sed, tristique ultrices mi. Ut et porta
-                felis. Aenean ullamcorper luctus lorem, id euismod ligula posuere ut. Praesent venenatis leo id laoreet
-                rhoncus. Pellentesque a velit viverra purus pretium tincidunt nec ac urna. Cras vel iaculis lacus. Nunc
-                tincidunt, massa sed congue lobortis, odio nisl rutrum urna, ut tincidunt erat massa ac arcu. Nulla
-                finibus, est vitae vulputate ornare, dui arcu pulvinar enim, at blandit sapien risus id odio. Sed libero
-                sem, facilisis pretium molestie non, tristique et urna. Nullam at erat sit amet nulla varius elementum.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
@@ -139,25 +113,30 @@
             </div>
             <div class="modal-body" id="articleModalBody">
 
-                <form  id="articleForm'" th:action="@{/admin/new}" th:object="${article}" method="POST">
+                <form id="articleForm" th:action="@{/admin/new}" th:object="${article}" method="POST">
                     <div class="mb-3">
-                        <input type="text" name="title" th:field="*{title}" placeholder="Article Title"
+                        <input type="text" th:id="title" name="title" th:field="*{title}" placeholder="Article Title"
                                class="form-control" id="article_title">
-                        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title cannot be empty</span>
+                        <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title cannot be empty</span>
+                        <small class="text-danger error-message" id="error-title"></small>
                     </div>
                     <div class="mb-3">
-                        <input placeholder="Date" name="date" th:field="*{date}" type="date" class="form-control"
+                        <input placeholder="Date" th:id="date" name="date" th:field="*{date}" type="date"
+                               class="form-control"
                                id="date_article">
-                        <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Date cannot be empty</span>
+                        <span class="text-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Date cannot be empty</span>
+                        <small class="text-danger error-message" id="error-date"></small>
                     </div>
                     <div>
-                        <textarea placeholder="Content" name="content" th:field="*{content}" class="form-control"
+                        <textarea placeholder="Content" th:id="content" name="content" th:field="*{content}"
+                                  class="form-control"
                                   id="article_body" rows="6"></textarea>
-                        <span th:if="${#fields.hasErrors('content')}"
+                        <span class="text-danger" th:if="${#fields.hasErrors('content')}"
                               th:errors="*{content}">Content cannot be empty</span>
+                        <small class="text-danger error-message" id="error-content"></small>
                     </div>
                     <br>
-                    <button type="submit"  class="btn btn-warning">Publish</button>
+                    <button type="submit" class="btn btn-warning">Publish</button>
                 </form>
             </div>
 
@@ -178,17 +157,43 @@
     $(document).ready(function () {
         $("#articleForm").submit(function (event) {
             event.preventDefault(); // Evita la recarga de la página
+            $('.error-message').text('');
+            $('.form-control').removeClass('is-invalid');
             $.ajax({
                 url: $(this).attr('action'),
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function (response) {
-                    // Maneja la respuesta del servidor
-                    console.log(response);
+                    if (response.status === "success") {
+                    $("#articles").load("/home #articles");
+                    $("#addArticleModal").modal('hide');
+                    $("#articleForm")[0].reset();
+
+                    }
                 },
-                error: function (xhr, status, error) {
-                    // Maneja el error
-                    console.error(error);
+                error: function (xhr) {
+                    if (xhr.status === 400) { // Código de estado 400 (Bad Request) para errores de validación
+                        var errors = xhr.responseJSON.errors; // Obtiene los errores de validación
+                        $.each(errors, function (field, message) {
+                            $("#error-" + field).text(message)
+                            $("#" + field).addClass("is-invalid")
+                        })
+                    } else {
+                        alert("Error in the request " + xhr.status);
+                    }
+                }
+            });
+        });
+
+        $(".article").click(function () {
+            const id = $(this).attr("id")
+            const url = "/article/" + id;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (response) {
+                    $(".article-title").text(response.title);
+                    $(".article-content").html(`<p> ${response.data}</p> ${response.content}`);
                 }
             });
         });

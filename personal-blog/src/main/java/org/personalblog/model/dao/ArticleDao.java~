@@ -53,9 +53,9 @@ public class ArticleDao {
         JsonUtil.saveJson(FILE_PATH, articles);
     }
 
-    public boolean login(String username, String password) {
-        return username.equals("admin") && password.equals("1234");
-    }
+
+
+
 }
 
 

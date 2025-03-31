@@ -33,4 +33,20 @@ public class ArticleService {
                 .build();
         articleDao.saveArticle(article);
     }
+
+    public void updateArticle(ArticleDto articleDto, String id) {
+        Article article = articleDao.getArticle(articleDto.getId());
+        article.setTitle(articleDto.getTitle());
+        article.setDate(articleDto.getDate());
+        article.setContent(articleDto.getContent());
+        articleDao.updateArticle(article);
+    }
+
+    public void deleteArticle(String id) {
+        articleDao.deleteArticle(id);
+    }
+
+    public boolean login(String username, String password) {
+       return articleDao.login(username, password);
+    }
 }

@@ -10,7 +10,7 @@
 </head>
 <body style="background-color: #fffcf5;">
 <div class="container-fluid  ">
-    <button class="btn btn-outline-warning text-dark shadow float-end m-4" data-bs-toggle="modal"
+    <button class="btn btn-outline-warning text-dark shadow float-end m-4"  id="loginBtn" data-bs-toggle="modal"
             data-bs-target="#loginModal">
         Login
     </button>
@@ -27,17 +27,17 @@
                     <h4 class="float-start ">Articles</h4>
                 </div>
                 <div class="col-9 ">
-                    <button class="btn btn-warning text-dark shadow float-end" data-bs-toggle="modal"
-                            data-bs-target="#addArticleModal">
+                    <button  class="btn btn-warning text-dark shadow float-end add-bttn" data-bs-toggle="modal"
+                            data-bs-target="#addArticleModal" >
                         Add
                     </button>
                 </div>
 
             </div>
             <br>
-            <section id="articles">
+            <section id="articles" >
                 <div th:each="articles : ${articles}" class="row article-row m-0 p-2 rounded z-1" role="button">
-                    <div class="col-8 row article"  th:id="${articles.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <div class="col-8 row article" th:onclick="showArticle([[${articles.id}]])"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <div class="col-6">
                             <p class="m-0">[[${articles.title}]]</p>
                         </div>
@@ -46,13 +46,13 @@
                         </div>
                     </div>
 
-                    <div class="col-2 ">
+                    <div class="col-2 buttons-admin"  >
 
-                        <button class="btn btn-outline-warning shadow float-end" data-bs-toggle="modal"
+                        <button  th:onclick="updateArticle([[${articles.id}]])" class="btn btn-outline-warning shadow float-end edit-bttn" data-bs-toggle="modal"
                                 data-bs-target="#addArticleModal">Edit</button>
                     </div>
-                    <div class="col-2">
-                        <button class="btn btn-outline-danger  shadow float-end">Delete</button>
+                    <div class="col-2 buttons-admin"  >
+                        <button th:onclick="deleteArticle([[${articles.id}]])" class="btn btn-outline-danger  shadow float-end" >Delete</button>
                     </div>
                 </div>
             </section>
@@ -87,17 +87,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1">
                     </div>
-                    <button type="submit" class="btn btn-warning float-end">Login</button>
-                </form>
+                    <button type="button" onclick="login()" class="btn btn-warning float-end">Login</button>
+
             </div>
         </div>
     </div>
@@ -108,11 +108,10 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addArticleModalLabel">New Article</h1>
+                <h1 class="modal-title fs-5 " id="addArticleModalLabel">New Article</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="articleModalBody">
-
                 <form id="articleForm" th:action="@{/admin/new}" th:object="${article}" method="POST">
                     <div class="mb-3">
                         <input type="text" th:id="title" name="title" th:field="*{title}" placeholder="Article Title"
@@ -136,7 +135,7 @@
                         <small class="text-danger error-message" id="error-content"></small>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-warning">Publish</button>
+                    <button type="submit" class="btn btn-warning submit-btn">Publish</button>
                 </form>
             </div>
 
@@ -155,6 +154,19 @@
 
 <script th:inline="javascript">
     $(document).ready(function () {
+
+        if(localStorage.getItem("token") != null){
+            $(".add-bttn").removeAttr("hidden");
+            $(".buttons-admin").removeAttr("hidden");
+            $("#loginBtn").text("Logout");
+            $("#loginBtn").attr("onclick", "logout()");
+        } else{
+            $(".add-bttn").attr("hidden", "hidden");
+            $(".buttons-admin").attr("hidden", "hidden");
+            $("#loginBtn").text("Login");
+        }
+
+
         $("#articleForm").submit(function (event) {
             event.preventDefault(); // Evita la recarga de la página
             $('.error-message').text('');
@@ -183,21 +195,92 @@
                     }
                 }
             });
+            $(".add-bttn").removeAttr("hidden");
+            $(".buttons-admin").removeAttr("hidden");
         });
 
-        $(".article").click(function () {
-            const id = $(this).attr("id")
-            const url = "/article/" + id;
-            $.ajax({
-                url: url,
-                type: 'GET',
-                success: function (response) {
-                    $(".article-title").text(response.title);
-                    $(".article-content").html(`<p> ${response.date}</p> ${response.content}`);
-                }
-            });
+
+
+        $(".add-bttn").click(function () {
+            $(".submit-btn").text("Publish")
+            $("#addArticleModalLabel").text("Add Article")
+            $("#articleForm").attr("action", "/admin/new");
+            $('#articleForm')[0].reset()
+
         });
     });
+
+    function logout() {
+        localStorage.removeItem("token");
+        window.location.reload();
+    }
+
+    function login() {
+        alert("Login");
+        const username = $("#exampleInputEmail1").val();
+        const password = $("#exampleInputPassword1").val();
+        const url = "/login/"+username+"/"+password;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (response) {
+                console.log(response);
+               if(response.status === true) {
+                   localStorage.setItem("token", response.token );
+                   window.location.reload();
+               } else {
+                   alert("Wrong username or password");
+               }
+            }
+        });
+    }
+
+    function deleteArticle(id) {
+        const url = "/admin/delete/" + id;
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            success: function (response) {
+                $("#articles").load("/home #articles");
+                $(".add-bttn").removeAttr("hidden");
+                $(".buttons-admin").removeAttr("hidden");
+            }
+        });
+    }
+
+    function showArticle(id) {
+        const url = "/article/" + id;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (response) {
+                $(".article-title").text(response.title);
+                $(".article-content").html(`<p> ${response.date}</p> ${response.content}`);
+            }
+        });
+    }
+
+    function updateArticle(id) {
+
+        const url = "/article/" + id;
+
+        $(".submit-btn").text("Update")
+        $("#addArticleModalLabel").text("Update Article")
+        $("#articleForm").attr("action", "/admin/update/"+id);
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (response) {
+                $("#title").val(response.title);
+                $("#date").val(response.date);
+                $("#content").val(response.content);
+            },
+            error: function (xhr) {
+                alert("Error in the request " + xhr.status);
+            }
+        });
+    }
 </script>
 
 </body>
